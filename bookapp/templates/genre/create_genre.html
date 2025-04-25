@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Genre{% endblock %}
+
+{% block content %}
+  <div class="create-genre-container">
+    <h1 class="page-title">Create a New Genre</h1>
+    <form method="post" class="genre-form">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="submit-btn">Create Genre</button>
+    </form>
+  </div>
+
+  <style>
+    /* Container for creating a new genre */
+    .create-genre-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 40px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Page title */
+    .page-title {
+      font-size: 2.5rem;
+      color: #2F4156;
+      margin-bottom: 20px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    /* Genre form */
+    .genre-form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Form input fields */
+    .genre-form input,
+    .genre-form select,
+    .genre-form textarea {
+      padding: 10px;
+      font-size: 1.1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Submit button */
+    .submit-btn {
+      padding: 12px 20px;
+      font-size: 1.2rem;
+      color: #fff;
+      background-color: #2F4156;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    /* Hover effect for submit button */
+    .submit-btn:hover {
+      background-color: #4D657D;
+    }
+  </style>
+{% endblock %}

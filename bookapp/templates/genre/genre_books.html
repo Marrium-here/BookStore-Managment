@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+
+{% block title %}Books in {{ genre.name }}{% endblock %}
+
+{% block content %}
+  <div class="genre-books-container">
+    <h1 class="page-title">Books in {{ genre.name }}</h1>
+    <ul class="books-list">
+      {% for book in books %}
+        <li class="book-item">
+          <div class="book-box">
+            <!-- Book title above the image -->
+            <a href="{% url 'book_detail' book.id %}" class="book-title">{{ book.title }}</a>
+            <div class="book-thumbnail">
+              <!-- Display book cover image -->
+              <img src="{{ book.cover_image.url }}" alt="{{ book.title }} cover" class="book-image">
+            </div>
+            <!-- Display author name below the image -->
+            <p class="book-author">By {{ book.author.name }}</p>
+          </div>
+        </li>
+      {% empty %}
+        <li class="empty-message">No books available in this genre.</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <style>
+    /* Container for the genre books */
+    .genre-books-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Page title */
+    .page-title {
+      font-size: 2.5rem;
+      color: #2F4156;
+      margin-bottom: 30px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    /* List of books */
+    .books-list {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap; /* Allow books to wrap on smaller screens */
+      justify-content: space-evenly; /* Spread books evenly across the row */
+    }
+
+    /* Individual book item */
+    .book-item {
+      margin-bottom: 20px;
+      width: 200px; /* Fixed width */
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Book box styling */
+    .book-box {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+      width: 200px;
+      height: 250px; /* Increased height for author name */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Hover effect for book box */
+    .book-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Book title */
+    .book-title {
+      display: block;
+      font-size: 1.2rem;
+      color: #2F4156;
+      text-decoration: none;
+      font-weight: 600;
+      margin-bottom: 10px; /* Reduce margin to fit the square layout */
+    }
+
+    /* Hover effect for book title */
+    .book-title:hover {
+      color: #4D657D;
+    }
+
+    /* Book thumbnail */
+    .book-thumbnail {
+      flex-grow: 1;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Styling for book image */
+    .book-image {
+      width: 100px; /* Adjust size to fit square box */
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    /* Author name styling */
+    .book-author {
+      font-size: 1rem;
+      color: #4D657D;
+      font-weight: 500;
+      margin-top: 10px;
+    }
+
+    /* Empty message */
+    .empty-message {
+      font-size: 1.2rem;
+      color: #555;
+      text-align: center;
+    }
+  </style>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Author{% endblock %}
+
+{% block content %}
+  <div class="create-author-container">
+    <h1>Create a New Author</h1>
+    
+    <form method="post" class="author-form">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="submit-btn">Create Author</button>
+    </form>
+  </div>
+
+
+<style>
+  /* Container for the form */
+  .create-author-container {
+    background-color: #f9f9f9;
+    padding: 40px;
+    margin: 50px auto;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  /* Heading styling */
+  .create-author-container h1 {
+    font-size: 2.5rem;
+    color: #2F4156;
+    margin-bottom: 30px;
+    font-weight: 700;
+  }
+
+  /* Form styling */
+  .author-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
+  /* Form input styling */
+  .author-form input,
+  .author-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 5px 0;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    transition: border 0.3s ease;
+  }
+
+  /* Focus effect for inputs */
+  .author-form input:focus,
+  .author-form textarea:focus {
+    border: 1px solid #4D657D;
+    outline: none;
+  }
+
+  /* Submit button styling */
+  .submit-btn {
+    background-color: #4D657D;
+    color: white;
+    font-size: 1.2rem;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Hover effect for submit button */
+  .submit-btn:hover {
+    background-color: #2F4156;
+  }
+</style>
+{% endblock %}

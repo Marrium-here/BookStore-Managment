@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Book Spotlight{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+    background-color: #2F4156; /* Dark blue */
+    color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    left: 0;
+}
+
+body {
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    background-color: #C8D9E6; /* Light blue background */
+    color: #2F4156; /* Dark blue text color */
+    line-height: 1.6;
+    padding-top: 100px; /* Increased padding-top to account for the fixed header height */
+}
+
+
+        .header-title {
+            font-size: 1.5rem;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .header-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .header-nav a:hover {
+            color: #F5EFEB; /* Soft beige hover effect */
+        }
+        .header-nav a.active {
+    color: #F5EFEB;  /* or any color you prefer */
+    text-decoration: underline;  /* or any other active state style */
+}
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            background: #F5EFEB; /* Soft beige background for heading */
+            color: #2F4156;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background-color: #2F4156; /* Dark blue */
+            color: white;
+            text-align: center;
+            padding: 1rem;
+          
+            width: 100%;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+
+        /* Optional: Mobile responsiveness */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 50px; /* Adjust for smaller screens */
+            }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-title">Book Spotlight</div>
+        
+        <nav class="header-nav">
+            {% if user.is_authenticated %}
+              
+                <a href="/">Home</a>
+                <a href="/books">Books</a>
+                <a href="/search">Search</a>
+             
+
+            {% else %}
+                <a href="/login">Login to Access</a>
+            {% endif %}
+            
+            <a href="/about">Aboutus</a>
+            <a href="/contact">Contact</a>
+        
+            {% if user.is_authenticated %}
+                <span>Hi, {{ user.username }}</span>
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'signup' %}">Signup</a>
+            {% endif %}
+        </nav>
+        
+    </header>
+    
+
+ 
+    {% block content %}{% endblock %}
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 BookSpotLight | All Rights Reserved</p>
+    </footer>
+</body>
+</html>

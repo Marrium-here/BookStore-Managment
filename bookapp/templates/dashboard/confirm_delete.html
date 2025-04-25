@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}Confirm Deletion{% endblock %}
+
+{% block content %}
+  <div class="confirmation-container">
+    <h1 class="page-title">Confirm Deletion</h1>
+    <p class="confirmation-text">
+      Are you sure you want to delete this {{ type }}: <strong>{{ item }}</strong>?
+    </p>
+    <form method="POST" class="confirmation-form">
+      {% csrf_token %}
+      <div class="button-group">
+        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+        <a href="{% url 'dashboard' %}" class="btn btn-secondary">Cancel</a>
+      </div>
+    </form>
+  </div>
+
+  <style>
+    /* Confirmation container styling */
+    .confirmation-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 40px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    /* Title */
+    .page-title {
+      font-size: 2.5rem;
+      color: #2F4156;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    /* Confirmation text */
+    .confirmation-text {
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    /* Button group container */
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    /* Button base styling */
+    .btn {
+      padding: 12px 30px;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    /* Danger button (Delete) */
+    .btn-danger {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+    }
+
+    .btn-danger:hover {
+      background-color: #c0392b;
+    }
+
+    /* Secondary button (Cancel) */
+    .btn-secondary {
+      background-color: #bdc3c7;
+      color: white;
+      border: none;
+    }
+
+    .btn-secondary:hover {
+      background-color: #7f8c8d;
+    }
+  </style>
+{% endblock %}

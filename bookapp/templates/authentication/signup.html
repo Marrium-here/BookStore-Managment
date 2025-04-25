@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block title %}Signup - Book Management System{% endblock %}
+
+{% block content %}
+<div class="signup-page">
+    <h1>Signup</h1>
+    <form method="POST" class="signup-form">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="{{ form.username.id_for_label }}">Username</label>
+            {{ form.username }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.password1.id_for_label }}">Password</label>
+            {{ form.password1 }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.password2.id_for_label }}">Confirm Password</label>
+            {{ form.password2 }}
+        </div>
+        <button type="submit" class="submit-button">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="{% url 'login' %}" class="login-link">Login here</a></p>
+</div>
+
+<style>
+    .signup-page {
+        padding: 60px 20px;
+        text-align: center;
+        background-color: #f4f4f4;
+        max-width: 500px;
+        margin: 0 auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .signup-page h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: #2F4156;
+    }
+
+    .signup-page form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .form-group {
+        text-align: left;
+    }
+
+    .form-group label {
+        font-size: 1rem;
+        color: #333;
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        margin-top: 8px;
+    }
+
+    .form-group input:focus {
+        border-color: #4D657D;
+        outline: none;
+    }
+
+    .submit-button {
+        padding: 12px;
+        background-color: #4D657D;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+
+    .submit-button:hover {
+        background-color: #3B4A5B;
+    }
+
+    .login-link {
+        color: #4D657D;
+        text-decoration: none;
+    }
+
+    .login-link:hover {
+        color: #3B4A5B;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}All Genres{% endblock %}
+
+{% block content %}
+  <div class="all-genres-container">
+    <h1 class="page-title">All Genres</h1>
+    <ul class="genres-list">
+      {% for genre in genres %}
+        <li class="genre-item">
+          <a href="{% url 'genre_books' genre.id %}" class="genre-link">{{ genre.name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <style>
+    /* Container for all genres */
+    .all-genres-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    /* Page title */
+    .page-title {
+      font-size: 2.5rem;
+      color: #2F4156;
+      margin-bottom: 30px;
+      font-weight: 700;
+    }
+
+    /* List of genres */
+    .genres-list {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    /* Individual genre item */
+    .genre-item {
+      margin-bottom: 20px;
+    }
+
+    /* Genre link */
+    .genre-link {
+      display: block;
+      font-size: 1.6rem;
+      color: #2F4156;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Hover effect for genre link */
+    .genre-link:hover {
+      background-color: #4D657D;
+      color: white;
+    }
+  </style>
+{% endblock %}

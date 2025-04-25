@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %}Login - Book Management System{% endblock %}
+
+{% block content %}
+<div class="login-page">
+    <h1>Login</h1>
+    <form method="POST" class="login-form">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" required class="input-field">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" required class="input-field">
+        </div>
+        <button type="submit" class="submit-button">Login</button>
+    </form>
+    <p>Don't have an account? <a href="{% url 'signup' %}" class="signup-link">Sign up here</a></p>
+</div>
+
+<style>
+    .login-page {
+        padding: 60px 20px;
+        text-align: center;
+        background-color: #f4f4f4;
+        max-width: 500px;
+        margin: 0 auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-page h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: #2F4156;
+    }
+
+    .login-page form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .form-group {
+        text-align: left;
+    }
+
+    .form-group label {
+        font-size: 1rem;
+        color: #333;
+    }
+
+    .input-field {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        margin-top: 8px;
+    }
+
+    .input-field:focus {
+        border-color: #4D657D;
+        outline: none;
+    }
+
+    .submit-button {
+        padding: 12px;
+        background-color: #4D657D;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+
+    .submit-button:hover {
+        background-color: #3B4A5B;
+    }
+
+    .signup-link {
+        color: #4D657D;
+        text-decoration: none;
+    }
+
+    .signup-link:hover {
+        color: #3B4A5B;
+    }
+</style>
+{% endblock %}

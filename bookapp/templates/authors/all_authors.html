@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}All Authors{% endblock %}
+
+{% block content %}
+    <div class="authors-container">
+        <h1>All Authors</h1>
+        <ul class="authors-list">
+            {% for author in authors %}
+                <li class="author-item">
+                    <a href="{% url 'author_detail' author.id %}" class="author-link">{{ author.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+<style>
+    /* Container for the authors page */
+    .authors-container {
+        background-color: #f9f9f9;
+        padding: 40px;
+        text-align: center;
+    }
+
+    /* Heading style */
+    .authors-container h1 {
+        font-size: 3rem;
+        margin-bottom: 30px;
+        color: #2F4156;
+        font-weight: 700;
+    }
+
+    /* Authors list style */
+    .authors-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Individual author item */
+    .author-item {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Hover effect on author items */
+    .author-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Link styling for author names */
+    .author-link {
+        font-size: 1.5rem;
+        color: #2F4156;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+
+    /* Hover effect for author links */
+    .author-link:hover {
+        color: #4D657D;
+    }
+</style>
+{% endblock %}

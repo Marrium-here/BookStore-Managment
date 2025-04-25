@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Books by Genre{% endblock %}
+
+{% block content %}
+  <div class="search-container">
+    <h1 class="page-title">Search Books by Genre</h1>
+
+    <!-- Search form -->
+    <form method="get" action="{% url 'search_by_genre' %}" class="search-form">
+      <input type="text" name="genre_name" placeholder="Enter genre" value="{{ genre_name }}" class="search-input">
+      <button type="submit" class="search-button">Search</button>
+    </form>
+
+    {% if books %}
+      <h2 class="results-title">Books in the Selected Genre</h2>
+      <div class="books-grid">
+        {% for book in books %}
+          <div class="book-card">
+            <a href="{% url 'book_detail' book.id %}" class="book-link">
+              <!-- Book Image -->
+              <img src="{{ book.cover_image.url }}" alt="{{ book.title }}" class="book-image">
+              <!-- Book Title -->
+              <h3 class="book-title">{{ book.title }}</h3>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="no-books-message">No books found for this genre.</p>
+    {% endif %}
+  </div>
+
+  <style>
+    /* Main container for the search page */
+    .search-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Title of the page */
+    .page-title {
+      font-size: 2.5rem;
+      color: #2F4156;
+      margin-bottom: 30px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    /* Search form styling */
+    .search-form {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .search-input {
+      padding: 10px;
+      font-size: 1rem;
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-right: 10px;
+      transition: border-color 0.3s ease;
+    }
+
+    .search-input:focus {
+      border-color: #2F4156;
+      outline: none;
+    }
+
+    .search-button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #2F4156;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .search-button:hover {
+      background-color: #4D657D;
+    }
+
+    /* Results title */
+    .results-title {
+      font-size: 2rem;
+      color: #2F4156;
+      margin-bottom: 20px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    /* Books grid */
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+      padding: 0;
+      margin: 0;
+    }
+
+    /* Individual book card (boxed layout) */
+    .book-card {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+      padding: 10px;
+    }
+
+    /* Hover effect for book card */
+    .book-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Book image styling */
+    .book-image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      transition: transform 0.3s ease;
+    }
+
+    /* Book title styling */
+    .book-title {
+      font-size: 1.2rem;
+      color: #2F4156;
+      margin: 15px 0;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    /* Book link */
+    .book-link {
+      display: block;
+      text-decoration: none;
+    }
+
+    /* Empty message */
+    .no-books-message {
+      font-size: 1.2rem;
+      color: #555;
+      text-align: center;
+    }
+  </style>
+{% endblock %}

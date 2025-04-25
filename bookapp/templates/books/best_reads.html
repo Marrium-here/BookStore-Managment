@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="best-reads-page">
+    <h1>Best Reads</h1>
+    <p>Explore our curated selection of top books loved by readers!</p>
+    <div class="best-reads-container">
+        {% for book in best_reads %}
+            <div class="book-card">
+                <img src="{{ book.cover_image.url }}" alt="{{ book.name }}">
+                <h3>{{ book.name }}</h3>
+                <p>By {{ book.author.name }}</p> <!-- Assuming 'author' is a related model -->
+                <a href="/book/{{ book.id }}/" class="details-button">View Details</a>
+            </div>
+        {% empty %}
+            <p>No best reads available at the moment. Check back later!</p>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+    .best-reads-page {
+        padding: 50px 20px;
+        text-align: center;
+        background-color: #f4f4f4;
+    }
+
+    .best-reads-page h1 {
+        font-size: 3rem;
+        margin-bottom: 15px;
+        color: #2F4156;
+    }
+
+    .best-reads-page p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        color: #555;
+    }
+
+    .best-reads-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .book-card {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        width: 220px;
+        padding: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .book-card img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    .book-card h3 {
+        font-size: 1.4rem;
+        margin: 10px 0;
+        color: #333;
+    }
+
+    .book-card p {
+        font-size: 1rem;
+        color: #777;
+    }
+
+    .details-button {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 8px 16px;
+        background-color: #4D657D;
+        color: white;
+        border-radius: 20px;
+        text-decoration: none;
+        font-size: 0.9rem;
+    }
+
+    .details-button:hover {
+        background-color: #3B4A5B;
+    }
+</style>
+{% endblock %}

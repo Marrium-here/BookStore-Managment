@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="book-detail-container">
+    <h2 class="book-title">{{ book.title }}</h2>
+    
+    <!-- Book cover image -->
+    {% if book.cover_image %}
+      <img src="{{ book.cover_image.url }}" alt="{{ book.title }}" class="book-cover-image">
+    {% else %}
+      <p>No cover image available.</p>
+    {% endif %}
+
+    <div class="book-info">
+      <p><strong>Author:</strong> {{ book.author.name }}</p>
+    
+      <p><strong>Description:</strong> {{ book.description }}</p>
+    </div>
+
+    <!-- Genres associated with the book -->
+    <p><strong>Genre:</strong>
+      {% for genre in book.genre.all %}
+        <span class="genre-name">{{ genre.name }}</span>{% if not forloop.last %}, {% endif %}
+      {% endfor %}
+    </p>
+
+    <!-- Link to go back to all books -->
+    <a href="{% url 'all_books' %}" class="back-link">Back to all books</a>
+  </div>
+
+  <style>
+    /* Container for book details */
+    .book-detail-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    /* Book title */
+    .book-title {
+      font-size: 2.5rem;
+      color: #2F4156;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    /* Book cover image */
+    .book-cover-image {
+      max-width: 300px;
+      height: auto;
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
+
+    /* Book info section */
+    .book-info p {
+      font-size: 1.2rem;
+      color: #555;
+      margin: 10px 0;
+      line-height: 1.6;
+    }
+
+    /* Genres styling */
+    .genre-name {
+      font-size: 1.2rem;
+      color: #4D657D;
+      font-weight: 600;
+    }
+
+    /* Back link */
+    .back-link {
+      font-size: 1.2rem;
+      color: #2F4156;
+      text-decoration: none;
+      margin-top: 30px;
+      display: inline-block;
+      padding: 10px 20px;
+      border: 2px solid #4D657D;
+      border-radius: 50px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Hover effect for back link */
+    .back-link:hover {
+      background-color: #4D657D;
+      color: white;
+    }
+  </style>
+{% endblock %}

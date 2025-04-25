@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Book{% endblock %}
+
+{% block content %}
+  <div class="create-book-container">
+    <h1>Create a New Book</h1>
+    <form method="post" enctype="multipart/form-data" class="create-book-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="submit-button">Create Book</button>
+    </form>
+  </div>
+
+  <style>
+    /* Container for the create book form */
+    .create-book-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    /* Form title */
+    h1 {
+      font-size: 2.5rem;
+      color: #2F4156;
+      margin-bottom: 30px;
+      font-weight: 700;
+    }
+
+    /* Form styling */
+    .create-book-form {
+      text-align: left;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Style for form inputs (text fields, textarea, etc.) */
+    .create-book-form input,
+    .create-book-form select,
+    .create-book-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    /* Focus effect for input fields */
+    .create-book-form input:focus,
+    .create-book-form select:focus,
+    .create-book-form textarea:focus {
+      border-color: #4D657D;
+      outline: none;
+    }
+
+    /* Submit button styling */
+    .submit-button {
+      background-color: #4D657D;
+      color: white;
+      padding: 12px 30px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    /* Hover effect for submit button */
+    .submit-button:hover {
+      background-color: #2F4156;
+    }
+  </style>
+{% endblock %}
